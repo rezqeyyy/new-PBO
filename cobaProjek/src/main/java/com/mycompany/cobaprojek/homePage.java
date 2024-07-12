@@ -49,32 +49,21 @@ public class homePage extends javax.swing.JFrame {
         Page = new javax.swing.JPanel();
         Home = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        fName = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        lName = new javax.swing.JTextField();
-        jLabel15 = new javax.swing.JLabel();
-        Email = new javax.swing.JTextField();
-        Submit = new javax.swing.JButton();
-        Submit1 = new javax.swing.JButton();
-        Submit2 = new javax.swing.JButton();
-        Submit3 = new javax.swing.JButton();
         Pemasukkan = new javax.swing.JPanel();
-        fName4 = new javax.swing.JTextField();
         jLabel30 = new javax.swing.JLabel();
-        lName4 = new javax.swing.JTextField();
+        jPemasukkan = new javax.swing.JTextField();
         jLabel31 = new javax.swing.JLabel();
-        Email4 = new javax.swing.JTextField();
-        Submit16 = new javax.swing.JButton();
-        Submit17 = new javax.swing.JButton();
-        Submit18 = new javax.swing.JButton();
+        kPemasukkan = new javax.swing.JTextField();
+        createPemasukkan = new javax.swing.JButton();
         jLabel32 = new javax.swing.JLabel();
-        Submit19 = new javax.swing.JButton();
-        jLabel33 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
         Pengeluaran = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        jPengeluaran = new javax.swing.JTextField();
+        jLabel35 = new javax.swing.JLabel();
+        kPengeluaran = new javax.swing.JTextField();
+        createPengeluaran = new javax.swing.JButton();
         RiwayatTransaksi = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
 
@@ -191,138 +180,31 @@ public class homePage extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Home");
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Create");
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("First Name");
-
-        fName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fNameActionPerformed(evt);
-            }
-        });
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Last Name");
-
-        lName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lNameActionPerformed(evt);
-            }
-        });
-
-        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("Email");
-
-        Email.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EmailActionPerformed(evt);
-            }
-        });
-
-        Submit.setText("Create");
-        Submit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SubmitActionPerformed(evt);
-            }
-        });
-
-        Submit1.setText("Update");
-        Submit1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Submit1ActionPerformed(evt);
-            }
-        });
-
-        Submit2.setText("New");
-        Submit2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Submit2ActionPerformed(evt);
-            }
-        });
-
-        Submit3.setText("Delete");
-        Submit3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Submit3ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout HomeLayout = new javax.swing.GroupLayout(Home);
         Home.setLayout(HomeLayout);
         HomeLayout.setHorizontalGroup(
             HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(HomeLayout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addGroup(HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel15)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel6)
-                    .addComponent(lName)
-                    .addComponent(Email)
-                    .addGroup(HomeLayout.createSequentialGroup()
-                        .addComponent(Submit)
-                        .addGap(18, 18, 18)
-                        .addComponent(Submit1)
-                        .addGap(18, 18, 18)
-                        .addComponent(Submit2)
-                        .addGap(18, 18, 18)
-                        .addComponent(Submit3))
-                    .addComponent(fName))
-                .addContainerGap(678, Short.MAX_VALUE))
+            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1100, Short.MAX_VALUE)
         );
         HomeLayout.setVerticalGroup(
             HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(HomeLayout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel6)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel7)
-                .addGap(18, 18, 18)
-                .addComponent(fName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel8)
-                .addGap(18, 18, 18)
-                .addComponent(lName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel15)
-                .addGap(18, 18, 18)
-                .addComponent(Email, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
-                .addGroup(HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Submit)
-                    .addComponent(Submit1)
-                    .addComponent(Submit2)
-                    .addComponent(Submit3))
-                .addContainerGap(231, Short.MAX_VALUE))
+                .addContainerGap(646, Short.MAX_VALUE))
         );
 
         Pemasukkan.setBackground(new java.awt.Color(0, 0, 102));
         Pemasukkan.setMinimumSize(new java.awt.Dimension(100, 100));
         Pemasukkan.setPreferredSize(new java.awt.Dimension(1100, 800));
 
-        fName4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fName4ActionPerformed(evt);
-            }
-        });
-
         jLabel30.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel30.setForeground(new java.awt.Color(255, 255, 255));
         jLabel30.setText("Jumlah");
 
-        lName4.addActionListener(new java.awt.event.ActionListener() {
+        jPemasukkan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lName4ActionPerformed(evt);
+                jPemasukkanActionPerformed(evt);
             }
         });
 
@@ -330,46 +212,21 @@ public class homePage extends javax.swing.JFrame {
         jLabel31.setForeground(new java.awt.Color(255, 255, 255));
         jLabel31.setText("Kategori");
 
-        Email4.addActionListener(new java.awt.event.ActionListener() {
+        kPemasukkan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Email4ActionPerformed(evt);
+                kPemasukkanActionPerformed(evt);
             }
         });
 
-        Submit16.setText("Create");
-        Submit16.addActionListener(new java.awt.event.ActionListener() {
+        createPemasukkan.setText("Create");
+        createPemasukkan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Submit16ActionPerformed(evt);
-            }
-        });
-
-        Submit17.setText("Update");
-        Submit17.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Submit17ActionPerformed(evt);
-            }
-        });
-
-        Submit18.setText("New");
-        Submit18.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Submit18ActionPerformed(evt);
+                createPemasukkanActionPerformed(evt);
             }
         });
 
         jLabel32.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel32.setForeground(new java.awt.Color(255, 255, 255));
-
-        Submit19.setText("Delete");
-        Submit19.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Submit19ActionPerformed(evt);
-            }
-        });
-
-        jLabel33.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel33.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel33.setText("Tanggal");
 
         jLabel34.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel34.setForeground(new java.awt.Color(255, 255, 255));
@@ -383,23 +240,20 @@ public class homePage extends javax.swing.JFrame {
             .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(PemasukkanLayout.createSequentialGroup()
                 .addGap(80, 80, 80)
-                .addGroup(PemasukkanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel31)
-                    .addComponent(jLabel30)
-                    .addComponent(jLabel33)
-                    .addComponent(jLabel32)
-                    .addComponent(lName4)
-                    .addComponent(Email4)
+                .addGroup(PemasukkanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PemasukkanLayout.createSequentialGroup()
-                        .addComponent(Submit16)
-                        .addGap(18, 18, 18)
-                        .addComponent(Submit17)
-                        .addGap(18, 18, 18)
-                        .addComponent(Submit18)
-                        .addGap(18, 18, 18)
-                        .addComponent(Submit19))
-                    .addComponent(fName4))
-                .addContainerGap(684, Short.MAX_VALUE))
+                        .addGroup(PemasukkanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel31)
+                            .addComponent(jLabel30)
+                            .addComponent(jPemasukkan)
+                            .addComponent(kPemasukkan, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(PemasukkanLayout.createSequentialGroup()
+                                .addComponent(createPemasukkan)
+                                .addGap(270, 270, 270)))
+                        .addGap(0, 678, Short.MAX_VALUE))
+                    .addGroup(PemasukkanLayout.createSequentialGroup()
+                        .addComponent(jLabel32)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         PemasukkanLayout.setVerticalGroup(
             PemasukkanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -407,26 +261,18 @@ public class homePage extends javax.swing.JFrame {
                 .addGap(39, 39, 39)
                 .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel32)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel33)
-                .addGap(18, 18, 18)
-                .addComponent(fName4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addComponent(jLabel30)
                 .addGap(18, 18, 18)
-                .addComponent(lName4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPemasukkan, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel31)
                 .addGap(18, 18, 18)
-                .addComponent(Email4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(kPemasukkan, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
-                .addGroup(PemasukkanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Submit16)
-                    .addComponent(Submit17)
-                    .addComponent(Submit18)
-                    .addComponent(Submit19))
-                .addContainerGap(269, Short.MAX_VALUE))
+                .addComponent(createPemasukkan)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel32)
+                .addContainerGap(376, Short.MAX_VALUE))
         );
 
         Pengeluaran.setBackground(new java.awt.Color(0, 0, 102));
@@ -437,18 +283,64 @@ public class homePage extends javax.swing.JFrame {
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("Pengeluaran");
 
+        jLabel33.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel33.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel33.setText("Jumlah");
+
+        jPengeluaran.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPengeluaranActionPerformed(evt);
+            }
+        });
+
+        jLabel35.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel35.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel35.setText("Kategori");
+
+        kPengeluaran.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kPengeluaranActionPerformed(evt);
+            }
+        });
+
+        createPengeluaran.setText("Create");
+        createPengeluaran.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createPengeluaranActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PengeluaranLayout = new javax.swing.GroupLayout(Pengeluaran);
         Pengeluaran.setLayout(PengeluaranLayout);
         PengeluaranLayout.setHorizontalGroup(
             PengeluaranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 1100, Short.MAX_VALUE)
+            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(PengeluaranLayout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addGroup(PengeluaranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel35)
+                    .addComponent(jLabel33)
+                    .addComponent(jPengeluaran)
+                    .addComponent(kPengeluaran, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(createPengeluaran))
+                .addContainerGap(678, Short.MAX_VALUE))
         );
         PengeluaranLayout.setVerticalGroup(
             PengeluaranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PengeluaranLayout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(645, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel33)
+                .addGap(18, 18, 18)
+                .addComponent(jPengeluaran, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel35)
+                .addGap(18, 18, 18)
+                .addComponent(kPengeluaran, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addComponent(createPengeluaran)
+                .addContainerGap(381, Short.MAX_VALUE))
         );
 
         RiwayatTransaksi.setBackground(new java.awt.Color(0, 0, 102));
@@ -482,8 +374,7 @@ public class homePage extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(PageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PageLayout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Pengeluaran, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Pengeluaran, javax.swing.GroupLayout.DEFAULT_SIZE, 1106, Short.MAX_VALUE)
                     .addContainerGap()))
             .addGroup(PageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(PageLayout.createSequentialGroup()
@@ -501,9 +392,8 @@ public class homePage extends javax.swing.JFrame {
                 .addComponent(Home, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(PageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PageLayout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Pengeluaran, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(PageLayout.createSequentialGroup()
+                    .addComponent(Pengeluaran, javax.swing.GroupLayout.DEFAULT_SIZE, 806, Short.MAX_VALUE)
                     .addContainerGap()))
             .addGroup(PageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(PageLayout.createSequentialGroup()
@@ -591,112 +481,74 @@ public class homePage extends javax.swing.JFrame {
         Page.revalidate();        
     }//GEN-LAST:event_jButton7ActionPerformed
 
-    private void SubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitActionPerformed
-        String fN, lN, em, query;
+    private void jPemasukkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPemasukkanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPemasukkanActionPerformed
+
+    private void kPemasukkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kPemasukkanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_kPemasukkanActionPerformed
+
+    private void createPemasukkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createPemasukkanActionPerformed
+        String jMasuk, kMasuk, query;
         
-        
-        //connect to db
-        try {
+        try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             
-            String url = "jdbc:MySQL://localhost:3306/java_user_db";
+            String url = "jdbc:mysql://localhost:3306/java_user_db";
             String user = "root";
             String pass = "";
             
-            Connection con = DriverManager.getConnection(url, user, pass);
-             
-            Statement st = con.createStatement();
-            
-            if("".equals(fName.getText())){
+            try (Connection con = DriverManager.getConnection(url, user, pass)) {
+                Statement st = con.createStatement();
                 
-                JOptionPane.showMessageDialog(new JFrame(), "First Name is rquire", "Dialog", 
-                        JOptionPane.ERROR_MESSAGE);
-            }else if("".equals(lName.getText())){
-                
-                JOptionPane.showMessageDialog(new JFrame(), "Last Name is rquire", "Dialog", 
-                        JOptionPane.ERROR_MESSAGE);
-            }else if("".equals(Email.getText())){
-                
-                JOptionPane.showMessageDialog(new JFrame(), "Email is rquire", "Dialog", 
-                        JOptionPane.ERROR_MESSAGE);
-            }else {
-                fN = fName.getText();
-                lN = lName.getText();
-                em = Email.getText();
-                query = "INSERT INTO user (first_name, last_name, email) VALUES('"+fN+"', '"+lN+"', '"+em+"')";
-                
+                jMasuk = jPemasukkan.getText();
+                kMasuk = kPemasukkan.getText();
+                query = "INSERT INTO pemasukkan(jumlah, keterangan) VALUES ('"+jMasuk+"', '"+kMasuk+"')";
                 
                 st.executeUpdate(query);
-                fName.setText("");
-                lName.setText("");
-                Email.setText("");
-                showMessageDialog(null, "Successfully registered.");
-                        
-                
-                
-                con.close();
             }
-
-        }catch(ClassNotFoundException e){
-            System.out.println("Error "+ e.getMessage());
-        } catch (SQLException ex) {
-            Logger.getLogger(homePage.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }catch(ClassNotFoundException | SQLException e){
+            System.out.print("Error " + e.getMessage());
         }
+        
+        
+        
+    }//GEN-LAST:event_createPemasukkanActionPerformed
 
-        //System.out.println(fN);
-    }//GEN-LAST:event_SubmitActionPerformed
-
-    private void fNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fNameActionPerformed
+    private void jPengeluaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPengeluaranActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_fNameActionPerformed
+    }//GEN-LAST:event_jPengeluaranActionPerformed
 
-    private void lNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lNameActionPerformed
+    private void kPengeluaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kPengeluaranActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_lNameActionPerformed
+    }//GEN-LAST:event_kPengeluaranActionPerformed
 
-    private void EmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EmailActionPerformed
-
-    private void Submit3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Submit3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Submit3ActionPerformed
-
-    private void Submit2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Submit2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Submit2ActionPerformed
-
-    private void Submit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Submit1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Submit1ActionPerformed
-
-    private void fName4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fName4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fName4ActionPerformed
-
-    private void lName4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lName4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lName4ActionPerformed
-
-    private void Email4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Email4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Email4ActionPerformed
-
-    private void Submit16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Submit16ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Submit16ActionPerformed
-
-    private void Submit17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Submit17ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Submit17ActionPerformed
-
-    private void Submit18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Submit18ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Submit18ActionPerformed
-
-    private void Submit19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Submit19ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Submit19ActionPerformed
+    private void createPengeluaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createPengeluaranActionPerformed
+        String jKeluar, kKeluar, query;
+        
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            
+            String url = "jdbc:mysql://localhost:3306/java_user_db";
+            String user = "root";
+            String pass = "";
+            
+            try (Connection con = DriverManager.getConnection(url, user, pass)) {
+                Statement st = con.createStatement();
+                
+                jKeluar = jPengeluaran.getText();
+                kKeluar = kPengeluaran.getText();
+                query = "INSERT INTO pengeluaran(jumlah, keterangan) VALUES ('"+jKeluar+"', '"+kKeluar+"')";
+                
+                st.executeUpdate(query);
+            }
+            
+        }catch(ClassNotFoundException | SQLException e){
+            System.out.print("Error " + e.getMessage());
+        }
+    }//GEN-LAST:event_createPengeluaranActionPerformed
 
     /**
      * @param args the command line arguments
@@ -734,42 +586,13 @@ public class homePage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Email;
-    private javax.swing.JTextField Email2;
-    private javax.swing.JTextField Email3;
-    private javax.swing.JTextField Email4;
     private javax.swing.JPanel Home;
-    private javax.swing.JPanel Home1;
-    private javax.swing.JPanel Home2;
-    private javax.swing.JPanel Home3;
-    private javax.swing.JPanel Home4;
-    private javax.swing.JPanel Home5;
-    private javax.swing.JPanel Home6;
-    private javax.swing.JPanel Home7;
     private javax.swing.JPanel Page;
     private javax.swing.JPanel Pemasukkan;
     private javax.swing.JPanel Pengeluaran;
     private javax.swing.JPanel RiwayatTransaksi;
-    private javax.swing.JButton Submit;
-    private javax.swing.JButton Submit1;
-    private javax.swing.JButton Submit10;
-    private javax.swing.JButton Submit11;
-    private javax.swing.JButton Submit12;
-    private javax.swing.JButton Submit13;
-    private javax.swing.JButton Submit14;
-    private javax.swing.JButton Submit15;
-    private javax.swing.JButton Submit16;
-    private javax.swing.JButton Submit17;
-    private javax.swing.JButton Submit18;
-    private javax.swing.JButton Submit19;
-    private javax.swing.JButton Submit2;
-    private javax.swing.JButton Submit3;
-    private javax.swing.JButton Submit8;
-    private javax.swing.JButton Submit9;
-    private javax.swing.JTextField fName;
-    private javax.swing.JTextField fName2;
-    private javax.swing.JTextField fName3;
-    private javax.swing.JTextField fName4;
+    private javax.swing.JButton createPemasukkan;
+    private javax.swing.JButton createPengeluaran;
     private javax.swing.JPanel index;
     private javax.swing.JPanel jBg;
     private javax.swing.JButton jButton1;
@@ -777,37 +600,19 @@ public class homePage extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField lName;
-    private javax.swing.JTextField lName2;
-    private javax.swing.JTextField lName3;
-    private javax.swing.JTextField lName4;
+    private javax.swing.JTextField jPemasukkan;
+    private javax.swing.JTextField jPengeluaran;
+    private javax.swing.JTextField kPemasukkan;
+    private javax.swing.JTextField kPengeluaran;
     // End of variables declaration//GEN-END:variables
 }
