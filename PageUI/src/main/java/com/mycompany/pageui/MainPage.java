@@ -51,8 +51,6 @@ public class MainPage extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(0, 51, 153));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\fal\\Matkul\\semester 2\\PBO\\projek\\1. logo PBO copy.png")); // NOI18N
-
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 204, 204));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -408,8 +406,11 @@ public class MainPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPHome;
+    private javax.swing.JPanel jPHome1;
     private javax.swing.JPanel jPPage;
+    private javax.swing.JPanel jPPage1;
     private javax.swing.JPanel jPPemasukkan;
     private javax.swing.JPanel jPPengeluaran;
     private javax.swing.JPanel jPRiwayatTransaksi;
