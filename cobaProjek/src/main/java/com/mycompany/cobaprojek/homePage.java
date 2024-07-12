@@ -143,6 +143,8 @@ public class homePage extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\fal\\Matkul\\semester 2\\PBO\\new-PBO\\asset\\1. logo PBO copy.png")); // NOI18N
+
         javax.swing.GroupLayout indexLayout = new javax.swing.GroupLayout(index);
         index.setLayout(indexLayout);
         indexLayout.setHorizontalGroup(
@@ -461,17 +463,14 @@ public class homePage extends javax.swing.JFrame {
         RiwayatTransaksi.setLayout(RiwayatTransaksiLayout);
         RiwayatTransaksiLayout.setHorizontalGroup(
             RiwayatTransaksiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(RiwayatTransaksiLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 1100, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 1100, Short.MAX_VALUE)
         );
         RiwayatTransaksiLayout.setVerticalGroup(
             RiwayatTransaksiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(RiwayatTransaksiLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
+                .addGap(39, 39, 39)
                 .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(643, Short.MAX_VALUE))
+                .addContainerGap(646, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout PageLayout = new javax.swing.GroupLayout(Page);
@@ -736,21 +735,40 @@ public class homePage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Email;
+    private javax.swing.JTextField Email2;
+    private javax.swing.JTextField Email3;
     private javax.swing.JTextField Email4;
     private javax.swing.JPanel Home;
+    private javax.swing.JPanel Home1;
+    private javax.swing.JPanel Home2;
+    private javax.swing.JPanel Home3;
+    private javax.swing.JPanel Home4;
+    private javax.swing.JPanel Home5;
+    private javax.swing.JPanel Home6;
+    private javax.swing.JPanel Home7;
     private javax.swing.JPanel Page;
     private javax.swing.JPanel Pemasukkan;
     private javax.swing.JPanel Pengeluaran;
     private javax.swing.JPanel RiwayatTransaksi;
     private javax.swing.JButton Submit;
     private javax.swing.JButton Submit1;
+    private javax.swing.JButton Submit10;
+    private javax.swing.JButton Submit11;
+    private javax.swing.JButton Submit12;
+    private javax.swing.JButton Submit13;
+    private javax.swing.JButton Submit14;
+    private javax.swing.JButton Submit15;
     private javax.swing.JButton Submit16;
     private javax.swing.JButton Submit17;
     private javax.swing.JButton Submit18;
     private javax.swing.JButton Submit19;
     private javax.swing.JButton Submit2;
     private javax.swing.JButton Submit3;
+    private javax.swing.JButton Submit8;
+    private javax.swing.JButton Submit9;
     private javax.swing.JTextField fName;
+    private javax.swing.JTextField fName2;
+    private javax.swing.JTextField fName3;
     private javax.swing.JTextField fName4;
     private javax.swing.JPanel index;
     private javax.swing.JPanel jBg;
@@ -759,20 +777,37 @@ public class homePage extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField lName;
+    private javax.swing.JTextField lName2;
+    private javax.swing.JTextField lName3;
     private javax.swing.JTextField lName4;
     // End of variables declaration//GEN-END:variables
 }
