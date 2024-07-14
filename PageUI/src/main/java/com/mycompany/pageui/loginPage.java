@@ -213,7 +213,7 @@ public class loginPage extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String Email, Password, query, passDb = null;
         String SUrl, SUser , SPass;
-        SUrl = "jdbc:MySQL://Localhost:3306/java_user_database";
+        SUrl = "jdbc:MySQL://Localhost:3306/java_user_db";
         SUser = "root";
         SPass = "";
         int notFound = 0;
@@ -238,10 +238,10 @@ public class loginPage extends javax.swing.JFrame {
                 notFound = 1;
             }
             if(notFound == 1 && Password.equals(passDb)){
-                MainPage MainPageFrame = new MainPage();
-                MainPageFrame.setVisible(true);
-                MainPageFrame.pack(); 
-                MainPageFrame.setLocationRelativeTo(null);
+                halamanUI halamanUIFrame = new halamanUI();
+                halamanUIFrame.setVisible(true);
+                halamanUIFrame.pack(); 
+                halamanUIFrame.setLocationRelativeTo(null);
         this.dispose();
             }else{
                 JOptionPane.showMessageDialog(new JFrame(), "Incorrect Email or Password", "Error", 
