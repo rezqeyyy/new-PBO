@@ -238,10 +238,10 @@ public class loginPage extends javax.swing.JFrame {
                 notFound = 1;
             }
             if(notFound == 1 && Password.equals(passDb)){
-                halamanUI halamanUIFrame = new halamanUI();
-                halamanUIFrame.setVisible(true);
-                halamanUIFrame.pack(); 
-                halamanUIFrame.setLocationRelativeTo(null);
+                PageHome PageHomeFrame = new PageHome();
+                PageHomeFrame.setVisible(true);
+                PageHomeFrame.pack(); 
+                PageHomeFrame.setLocationRelativeTo(null);
         this.dispose();
             }else{
                 JOptionPane.showMessageDialog(new JFrame(), "Incorrect Email or Password", "Error", 
