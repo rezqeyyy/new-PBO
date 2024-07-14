@@ -203,7 +203,7 @@ public class halamanUI extends javax.swing.JFrame {
 
         jLabel31.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel31.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel31.setText("Kategori");
+        jLabel31.setText("Keterangan");
 
         kPemasukkan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -241,7 +241,7 @@ public class halamanUI extends javax.swing.JFrame {
                             .addComponent(jPemasukkan)
                             .addComponent(kPemasukkan, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(createPemasukkan))
-                        .addGap(0, 678, Short.MAX_VALUE))
+                        .addGap(0, 684, Short.MAX_VALUE))
                     .addGroup(PemasukkanLayout.createSequentialGroup()
                         .addComponent(jLabel32)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -263,7 +263,7 @@ public class halamanUI extends javax.swing.JFrame {
                 .addComponent(createPemasukkan)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel32)
-                .addContainerGap(376, Short.MAX_VALUE))
+                .addContainerGap(382, Short.MAX_VALUE))
         );
 
         Pengeluaran.setBackground(new java.awt.Color(0, 0, 102));
@@ -286,7 +286,7 @@ public class halamanUI extends javax.swing.JFrame {
 
         jLabel35.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel35.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel35.setText("Kategori");
+        jLabel35.setText("Keterangan");
 
         kPengeluaran.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
