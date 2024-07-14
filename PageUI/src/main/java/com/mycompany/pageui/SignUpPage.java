@@ -4,6 +4,13 @@
  */
 package com.mycompany.pageui;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.showMessageDialog;
 /**
  *
  * @author ASUS
@@ -33,11 +40,11 @@ public class SignUpPage extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        uname = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        emailAddress = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        pass = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
@@ -49,8 +56,6 @@ public class SignUpPage extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(27, 62, 115));
         jPanel2.setPreferredSize(new java.awt.Dimension(700, 800));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\fal\\Matkul\\semester 2\\PBO\\projek\\1. logo PBO.png")); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 1, 54)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -68,7 +73,7 @@ public class SignUpPage extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(232, 232, 232)
                         .addComponent(jLabel2)))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(229, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,6 +108,11 @@ public class SignUpPage extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Sign Up");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setText("I have an account");
@@ -110,6 +120,11 @@ public class SignUpPage extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton2.setForeground(new java.awt.Color(27, 62, 115));
         jButton2.setText("Login");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -129,9 +144,9 @@ public class SignUpPage extends javax.swing.JFrame {
                         .addComponent(jLabel5)
                         .addComponent(jLabel6)
                         .addComponent(jLabel4)
-                        .addComponent(jTextField1)
-                        .addComponent(jTextField2)
-                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(uname)
+                        .addComponent(emailAddress)
+                        .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(71, Short.MAX_VALUE))
         );
@@ -143,15 +158,15 @@ public class SignUpPage extends javax.swing.JFrame {
                 .addGap(66, 66, 66)
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(uname, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(emailAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46)
@@ -198,6 +213,54 @@ public class SignUpPage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        loginPage loginPageFrame = new loginPage();
+        loginPageFrame.setVisible(true);
+        loginPageFrame.pack(); 
+        loginPageFrame.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String userName, email, Password, query;
+        String SUrl, SUser , SPass;
+        SUrl = "jdbc:MySQL://Localhost:3306/java_user_database";
+        SUser = "root";
+        SPass = "";
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
+            Statement st = con.createStatement();
+            if("".equals(uname.getText())){
+                JOptionPane.showMessageDialog(new JFrame(), "Username is require", "Error", 
+                        JOptionPane.ERROR_MESSAGE);
+            }else if("".equals(emailAddress.getText())){
+                JOptionPane.showMessageDialog(new JFrame(), "Email is require", "Error", 
+                        JOptionPane.ERROR_MESSAGE);
+            }else if("".equals(pass.getText())){
+                JOptionPane.showMessageDialog(new JFrame(), "Password is require", "Error", 
+                        JOptionPane.ERROR_MESSAGE);
+            }else{
+            userName = uname.getText();
+            email = emailAddress.getText();
+            Password = pass.getText();
+            System.out.println(Password);
+            
+            query = "INSERT INTO user(username,email,password)"+
+                    "VALUES('"+userName+"','"+email+"','"+Password+"')";
+            
+            st.execute(query);
+            uname.setText("");
+            emailAddress.setText("");
+            pass.setText("");
+            showMessageDialog(null, "Account has been created successfuly!");
+            
+            }
+        }catch(Exception e){
+            System.out.println("Error!" + e.getMessage());
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -234,6 +297,7 @@ public class SignUpPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField emailAddress;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -246,8 +310,7 @@ public class SignUpPage extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JPasswordField pass;
+    private javax.swing.JTextField uname;
     // End of variables declaration//GEN-END:variables
 }

@@ -11,6 +11,9 @@ package com.mycompany.pageui;
 public class PageUI {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        loginPage loginPageFrame = new loginPage();
+        loginPageFrame.setVisible(true);
+        loginPageFrame.pack(); 
+        loginPageFrame.setLocationRelativeTo(null);
     }
 }
