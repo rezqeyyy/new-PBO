@@ -213,7 +213,7 @@ public class loginPage extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String Email, Password, query, passDb = null;
         String SUrl, SUser , SPass;
-        SUrl = "jdbc:MySQL://Localhost:3306/java_user_db";
+        SUrl = "jdbc:MySQL://Localhost:3306/java_user_database";
         SUser = "root";
         SPass = "";
         int notFound = 0;

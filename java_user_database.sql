@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 10 Jul 2024 pada 05.08
+-- Waktu pembuatan: 15 Jul 2024 pada 05.18
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -20,6 +20,48 @@ SET time_zone = "+00:00";
 --
 -- Database: `java_user_database`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `pemasukkan`
+--
+
+CREATE TABLE `pemasukkan` (
+  `pemasukkan_id` int(11) NOT NULL,
+  `tanggal` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `jumlah` int(11) NOT NULL,
+  `keterangan` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `pemasukkan`
+--
+
+INSERT INTO `pemasukkan` (`pemasukkan_id`, `tanggal`, `jumlah`, `keterangan`) VALUES
+(4, '2024-07-12 16:57:02', 15000, 'teh manis'),
+(5, '2024-07-12 17:01:32', 5000, 'sosis');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `pengeluaran`
+--
+
+CREATE TABLE `pengeluaran` (
+  `pengeluaran_id` int(11) NOT NULL,
+  `tanggal` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `jumlah` int(11) NOT NULL,
+  `keterangan` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `pengeluaran`
+--
+
+INSERT INTO `pengeluaran` (`pengeluaran_id`, `tanggal`, `jumlah`, `keterangan`) VALUES
+(1, '2024-07-12 15:44:30', 18000, 'marsupilami'),
+(2, '2024-07-12 17:04:18', 9000, 'oreo goreng');
 
 -- --------------------------------------------------------
 
@@ -70,6 +112,18 @@ INSERT INTO `user` (`id`, `username`, `email`, `password`) VALUES
 --
 
 --
+-- Indeks untuk tabel `pemasukkan`
+--
+ALTER TABLE `pemasukkan`
+  ADD PRIMARY KEY (`pemasukkan_id`);
+
+--
+-- Indeks untuk tabel `pengeluaran`
+--
+ALTER TABLE `pengeluaran`
+  ADD PRIMARY KEY (`pengeluaran_id`);
+
+--
 -- Indeks untuk tabel `uang`
 --
 ALTER TABLE `uang`
@@ -86,6 +140,18 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT untuk tabel `pemasukkan`
+--
+ALTER TABLE `pemasukkan`
+  MODIFY `pemasukkan_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT untuk tabel `pengeluaran`
+--
+ALTER TABLE `pengeluaran`
+  MODIFY `pengeluaran_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT untuk tabel `uang`
 --
 ALTER TABLE `uang`
@@ -95,7 +161,7 @@ ALTER TABLE `uang`
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
