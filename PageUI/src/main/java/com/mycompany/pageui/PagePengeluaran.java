@@ -46,6 +46,11 @@ public class PagePengeluaran extends javax.swing.JFrame {
         jLabel31 = new javax.swing.JLabel();
         kPengeluaran = new javax.swing.JTextField();
         createPengeluaran = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -174,12 +179,36 @@ public class PagePengeluaran extends javax.swing.JFrame {
             }
         });
 
-        createPengeluaran.setText("Create");
+        createPengeluaran.setText("Add");
         createPengeluaran.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createPengeluaranActionPerformed(evt);
             }
         });
+
+        jButton1.setText("Search");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Edit");
+
+        jButton3.setText("Delete");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout PengeluaranLayout = new javax.swing.GroupLayout(Pengeluaran);
         Pengeluaran.setLayout(PengeluaranLayout);
@@ -188,13 +217,23 @@ public class PagePengeluaran extends javax.swing.JFrame {
             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1084, Short.MAX_VALUE)
             .addGroup(PengeluaranLayout.createSequentialGroup()
                 .addGap(80, 80, 80)
-                .addGroup(PengeluaranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel31)
-                    .addComponent(jLabel30)
-                    .addComponent(jPengeluaran)
-                    .addComponent(kPengeluaran, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(createPengeluaran))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(PengeluaranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PengeluaranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel31)
+                        .addComponent(jLabel30)
+                        .addComponent(jPengeluaran)
+                        .addComponent(kPengeluaran, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PengeluaranLayout.createSequentialGroup()
+                        .addComponent(createPengeluaran)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1)
+                        .addGap(22, 22, 22)
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton3)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 557, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33))
         );
         PengeluaranLayout.setVerticalGroup(
             PengeluaranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,15 +241,22 @@ public class PagePengeluaran extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
-                .addComponent(jLabel30)
-                .addGap(18, 18, 18)
-                .addComponent(jPengeluaran, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel31)
-                .addGap(18, 18, 18)
-                .addComponent(kPengeluaran, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
-                .addComponent(createPengeluaran)
+                .addGroup(PengeluaranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PengeluaranLayout.createSequentialGroup()
+                        .addComponent(jLabel30)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPengeluaran, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel31)
+                        .addGap(18, 18, 18)
+                        .addComponent(kPengeluaran, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)
+                        .addGroup(PengeluaranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(createPengeluaran)
+                            .addComponent(jButton1)
+                            .addComponent(jButton2)
+                            .addComponent(jButton3)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -292,29 +338,12 @@ public class PagePengeluaran extends javax.swing.JFrame {
     }//GEN-LAST:event_kPengeluaranActionPerformed
 
     private void createPengeluaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createPengeluaranActionPerformed
-        String jKeluar, kKeluar, query;
 
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-
-            String url = "jdbc:mysql://localhost:3306/java_user_database";
-            String user = "root";
-            String pass = "";
-
-            try (Connection con = DriverManager.getConnection(url, user, pass)) {
-                Statement st = con.createStatement();
-
-                jKeluar = jPengeluaran.getText();
-                kKeluar = kPengeluaran.getText();
-                query = "INSERT INTO pengeluaran(jumlah, keterangan) VALUES ('"+jKeluar+"', '"+kKeluar+"')";
-
-                st.executeUpdate(query);
-            }
-
-        }catch(ClassNotFoundException | SQLException e){
-            System.out.print("Error " + e.getMessage());
-        }
     }//GEN-LAST:event_createPengeluaranActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -359,12 +388,17 @@ public class PagePengeluaran extends javax.swing.JFrame {
     private javax.swing.JButton income;
     private javax.swing.JPanel index;
     private javax.swing.JPanel jBg;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JTextField jPengeluaran;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField kPengeluaran;
     private javax.swing.JButton outcome;
     // End of variables declaration//GEN-END:variables

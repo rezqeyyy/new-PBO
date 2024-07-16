@@ -300,11 +300,18 @@ public class PagePemasukkan extends javax.swing.JFrame {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(TablePemasukkan);
 
         BtnAdd.setText("Add");
-        BtnAdd.setActionCommand("Add");
         BtnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnAddActionPerformed(evt);
@@ -419,20 +426,36 @@ public class PagePemasukkan extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void homeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeActionPerformed
-        
+     PageHome PageHomeFrame = new PageHome();
+        PageHomeFrame.setVisible(true);
+        PageHomeFrame.pack();
+        PageHomeFrame.setLocationRelativeTo(null);
+        this.dispose();   
 
     }//GEN-LAST:event_homeActionPerformed
 
     private void outcomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_outcomeActionPerformed
-        
+     PagePengeluaran PagePengeluaranFrame = new PagePengeluaran();
+        PagePengeluaranFrame.setVisible(true);
+        PagePengeluaranFrame.pack();
+        PagePengeluaranFrame.setLocationRelativeTo(null);
+        this.dispose();   
     }//GEN-LAST:event_outcomeActionPerformed
 
     private void incomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incomeActionPerformed
-        
+      PagePemasukkan PagePemasukkanFrame = new PagePemasukkan();
+        PagePemasukkanFrame.setVisible(true);
+        PagePemasukkanFrame.pack();
+        PagePemasukkanFrame.setLocationRelativeTo(null);
+        this.dispose();  
     }//GEN-LAST:event_incomeActionPerformed
 
     private void RiTraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RiTraActionPerformed
-        
+      PageRiTra PageRiTraFrame = new PageRiTra();
+        PageRiTraFrame.setVisible(true);
+        PageRiTraFrame.pack();
+        PageRiTraFrame.setLocationRelativeTo(null);
+        this.dispose();  
     }//GEN-LAST:event_RiTraActionPerformed
 
     private void txtPemasukanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPemasukanActionPerformed
@@ -452,17 +475,17 @@ public class PagePemasukkan extends javax.swing.JFrame {
         tampilPemasukan(pemasukkanId);
     }//GEN-LAST:event_BtnScrActionPerformed
 
-    private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditActionPerformed
-       editPemasukan();
-       
-    BtnAdd.setEnabled(true);
-    BtnEdit.setEnabled(false);
-    }//GEN-LAST:event_BtnEditActionPerformed
-
     private void BtnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDeleteActionPerformed
            String pemasukkanId = TablePemasukkan.getValueAt(TablePemasukkan.getSelectedRow(), 0).toString();
         hapusPemasukan(pemasukkanId);
     }//GEN-LAST:event_BtnDeleteActionPerformed
+
+    private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditActionPerformed
+        editPemasukan();
+
+        BtnAdd.setEnabled(true);
+        BtnEdit.setEnabled(false);
+    }//GEN-LAST:event_BtnEditActionPerformed
 
     /**
      * @param args the command line arguments
