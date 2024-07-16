@@ -24,7 +24,7 @@ public class PagePemasukkan extends javax.swing.JFrame {
      */
     public PagePemasukkan() {
         initComponents();
-      setTitle("FORM PAGE PEMASUKAN");
+        setTitle("FORM PAGE PEMASUKAN");
         this.setLocation(200, 100);
         PageUI.getConnection();
         refreshPemasukan();
@@ -159,9 +159,9 @@ public class PagePemasukkan extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         TablePemasukkan = new javax.swing.JTable();
         BtnAdd = new javax.swing.JButton();
-        BtnDelete = new javax.swing.JButton();
         BtnScr = new javax.swing.JButton();
         BtnEdit = new javax.swing.JButton();
+        BtnDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -318,13 +318,6 @@ public class PagePemasukkan extends javax.swing.JFrame {
             }
         });
 
-        BtnDelete.setText("Delete");
-        BtnDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnDeleteActionPerformed(evt);
-            }
-        });
-
         BtnScr.setText("Search");
         BtnScr.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -336,6 +329,13 @@ public class PagePemasukkan extends javax.swing.JFrame {
         BtnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnEditActionPerformed(evt);
+            }
+        });
+
+        BtnDelete.setText("Delete");
+        BtnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnDeleteActionPerformed(evt);
             }
         });
 
@@ -476,7 +476,7 @@ public class PagePemasukkan extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnScrActionPerformed
 
     private void BtnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDeleteActionPerformed
-           String pemasukkanId = TablePemasukkan.getValueAt(TablePemasukkan.getSelectedRow(), 0).toString();
+        String pemasukkanId = TablePemasukkan.getValueAt(TablePemasukkan.getSelectedRow(), 0).toString();
         hapusPemasukan(pemasukkanId);
     }//GEN-LAST:event_BtnDeleteActionPerformed
 
