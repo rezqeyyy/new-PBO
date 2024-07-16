@@ -151,7 +151,7 @@ public class PagePemasukkan extends javax.swing.JFrame {
         RiTra = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         Pemasukkan = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        HeadMasuk = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
         txtPemasukan = new javax.swing.JTextField();
         jLabel31 = new javax.swing.JLabel();
@@ -265,10 +265,10 @@ public class PagePemasukkan extends javax.swing.JFrame {
 
         Pemasukkan.setBackground(new java.awt.Color(0, 0, 102));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Pemasukkan");
+        HeadMasuk.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        HeadMasuk.setForeground(new java.awt.Color(255, 255, 255));
+        HeadMasuk.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        HeadMasuk.setText("Pemasukkan");
 
         jLabel30.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel30.setForeground(new java.awt.Color(255, 255, 255));
@@ -343,7 +343,7 @@ public class PagePemasukkan extends javax.swing.JFrame {
         Pemasukkan.setLayout(PemasukkanLayout);
         PemasukkanLayout.setHorizontalGroup(
             PemasukkanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1084, Short.MAX_VALUE)
+            .addComponent(HeadMasuk, javax.swing.GroupLayout.DEFAULT_SIZE, 1084, Short.MAX_VALUE)
             .addGroup(PemasukkanLayout.createSequentialGroup()
                 .addGap(80, 80, 80)
                 .addGroup(PemasukkanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -360,14 +360,14 @@ public class PagePemasukkan extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(BtnDelete)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 564, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44))
         );
         PemasukkanLayout.setVerticalGroup(
             PemasukkanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PemasukkanLayout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(HeadMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addGroup(PemasukkanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PemasukkanLayout.createSequentialGroup()
@@ -527,6 +527,7 @@ public class PagePemasukkan extends javax.swing.JFrame {
     private javax.swing.JButton BtnDelete;
     private javax.swing.JButton BtnEdit;
     private javax.swing.JButton BtnScr;
+    private javax.swing.JLabel HeadMasuk;
     private javax.swing.JPanel Pemasukkan;
     private javax.swing.JButton RiTra;
     private javax.swing.JTable TablePemasukkan;
@@ -536,7 +537,6 @@ public class PagePemasukkan extends javax.swing.JFrame {
     private javax.swing.JPanel jBg;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JScrollPane jScrollPane1;

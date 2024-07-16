@@ -330,26 +330,24 @@ public class PagePengeluaran extends javax.swing.JFrame {
         Pengeluaran.setLayout(PengeluaranLayout);
         PengeluaranLayout.setHorizontalGroup(
             PengeluaranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1084, Short.MAX_VALUE)
+            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 1084, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(PengeluaranLayout.createSequentialGroup()
                 .addGap(80, 80, 80)
                 .addGroup(PengeluaranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PengeluaranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel31)
-                        .addComponent(jLabel30)
-                        .addComponent(txtPengeluaran)
-                        .addComponent(txtKeterangan, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel30)
+                    .addComponent(txtPengeluaran, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel31)
+                    .addComponent(txtKeterangan, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(PengeluaranLayout.createSequentialGroup()
                         .addComponent(BtnAdd)
                         .addGap(18, 18, 18)
                         .addComponent(BtnScr)
                         .addGap(22, 22, 22)
                         .addComponent(BtnEdit)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(12, 12, 12)
                         .addComponent(BtnDelete)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(82, 82, 82))
+                .addGap(48, 48, 48)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         PengeluaranLayout.setVerticalGroup(
             PengeluaranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -362,18 +360,17 @@ public class PagePengeluaran extends javax.swing.JFrame {
                         .addComponent(jLabel30)
                         .addGap(18, 18, 18)
                         .addComponent(txtPengeluaran, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(23, 23, 23)
                         .addComponent(jLabel31)
                         .addGap(18, 18, 18)
                         .addComponent(txtKeterangan, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(39, 39, 39)
-                        .addGroup(PengeluaranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(PengeluaranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(BtnAdd)
                             .addComponent(BtnScr)
                             .addComponent(BtnEdit)
                             .addComponent(BtnDelete)))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         javax.swing.GroupLayout jBgLayout = new javax.swing.GroupLayout(jBg);
@@ -442,7 +439,7 @@ public class PagePengeluaran extends javax.swing.JFrame {
         PageRiTraFrame.setVisible(true);
         PageRiTraFrame.pack();
         PageRiTraFrame.setLocationRelativeTo(null);
-        this.dispose();
+        this.dispose();  
     }//GEN-LAST:event_RiTraActionPerformed
 
     private void txtPengeluaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPengeluaranActionPerformed

@@ -8,58 +8,64 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
  * @author ASUS
  */
-public class PageRiTra extends javax.swing.JFrame {
+public final class PageRiTra extends javax.swing.JFrame {
     
 
     public PageRiTra() {
         initComponents();
-        tableRiwayat = new javax.swing.JTable();
-        loadData();
+        fetchRiwayatTransaksi();
     }
 
-    private void loadData() {
-        DefaultTableModel model = new DefaultTableModel(new String[]{"Jenis", "Jumlah", "Keterangan"}, 0);
-        tableRiwayat.setModel(model);
-
-        Connection conn = null;
-        Statement stmt = null;
-        ResultSet rs = null;
-
+    public void fetchRiwayatTransaksi() {
         try {
-            String url = "jdbc:mysql://localhost:3306/java_user_database";
-            String user = "root";
-            String pass = "";
-            conn = DriverManager.getConnection(url, user, pass);
-            stmt = conn.createStatement();
-            String sql = "SELECT tanggal, jumlah, keterangan FROM ritra";
-            rs = stmt.executeQuery(sql);
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_user_database", "root", "");
+            Statement stmt = con.createStatement();
+            String query = "SELECT * FROM riwayat";
+            ResultSet rs = stmt.executeQuery(query);
+
+            DefaultTableModel model = (DefaultTableModel) TableRiTra.getModel();
+            model.setRowCount(0); // Clear existing rows
 
             while (rs.next()) {
-                String tanggal = rs.getString("pemasukkan");
-                String jumlah = rs.getString("jumlah");
-                String keterangan = rs.getString("keterangan");
-                model.addRow(new Object[]{tanggal, jumlah, keterangan});
+                int riwayat_id = rs.getInt("riwayat_id");
+                int pemasukkan_id = rs.getInt("pemasukkan_id");
+                int pengeluaran_id = rs.getInt("pengeluaran_id");
+                int pemasukkan_jumlah = rs.getInt("pemasukkan_jumlah");
+                Timestamp pemasukkan_tanggal = rs.getTimestamp("pemasukkan_tanggal");
+                String pemasukkan_keterangan = rs.getString("pemasukkan_keterangan");
+                int pengeluaran_jumlah = rs.getInt("pengeluaran_jumlah");
+                Timestamp pengeluaran_tanggal = rs.getTimestamp("pengeluaran_tanggal");
+                String pengeluaran_keterangan = rs.getString("pengeluaran_keterangan");
+
+                // Formatting the timestamps to a readable date format
+                String pemasukkan_tanggal_str = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(pemasukkan_tanggal);
+                String pengeluaran_tanggal_str = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(pengeluaran_tanggal);
+
+                model.addRow(new Object[]{
+                    riwayat_id, pemasukkan_id, pengeluaran_id, pemasukkan_jumlah,
+                    pemasukkan_tanggal_str, pemasukkan_keterangan, pengeluaran_jumlah,
+                    pengeluaran_tanggal_str, pengeluaran_keterangan
+                });
             }
+
+            con.close();
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (rs != null) rs.close();
-                if (stmt != null) stmt.close();
-                if (conn != null) conn.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
     }
+
         
 
     /**
@@ -86,9 +92,8 @@ public class PageRiTra extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         RiTra = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableRiwayat = new javax.swing.JTable();
+        TableRiTra = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -196,46 +201,18 @@ public class PageRiTra extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Riwayat Transaksi");
 
-        jPanel1.setBackground(new java.awt.Color(51, 102, 255));
-
-        tableRiwayat.setModel(new javax.swing.table.DefaultTableModel(
+        TableRiTra.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "tanggal", "jumlah", "keterangan"
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8", "Title 9"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(tableRiwayat);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 873, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 561, Short.MAX_VALUE)
-        );
+        ));
+        jScrollPane1.setViewportView(TableRiTra);
 
         javax.swing.GroupLayout RiTraLayout = new javax.swing.GroupLayout(RiTra);
         RiTra.setLayout(RiTraLayout);
@@ -243,8 +220,8 @@ public class PageRiTra extends javax.swing.JFrame {
             RiTraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1084, Short.MAX_VALUE)
             .addGroup(RiTraLayout.createSequentialGroup()
-                .addGap(111, 111, 111)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(114, 114, 114)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 819, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         RiTraLayout.setVerticalGroup(
@@ -252,8 +229,8 @@ public class PageRiTra extends javax.swing.JFrame {
             .addGroup(RiTraLayout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -270,7 +247,7 @@ public class PageRiTra extends javax.swing.JFrame {
             jBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jBgLayout.createSequentialGroup()
                 .addComponent(index, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 15, Short.MAX_VALUE))
             .addGroup(jBgLayout.createSequentialGroup()
                 .addComponent(RiTra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -299,7 +276,7 @@ public class PageRiTra extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-       PagePengeluaran PagePengeluaranFrame = new PagePengeluaran();
+        PagePengeluaran PagePengeluaranFrame = new PagePengeluaran();
         PagePengeluaranFrame.setVisible(true);
         PagePengeluaranFrame.pack();
         PagePengeluaranFrame.setLocationRelativeTo(null);
@@ -334,6 +311,7 @@ public class PageRiTra extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel RiTra;
+    private javax.swing.JTable TableRiTra;
     private javax.swing.JPanel index;
     private javax.swing.JPanel jBg;
     private javax.swing.JButton jButton1;
@@ -343,8 +321,6 @@ public class PageRiTra extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tableRiwayat;
     // End of variables declaration//GEN-END:variables
 }
