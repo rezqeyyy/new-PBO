@@ -29,41 +29,47 @@ public final class PageRiTra extends javax.swing.JFrame {
     }
 
     public void fetchRiwayatTransaksi() {
-        try {
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_user_database", "root", "");
-            Statement stmt = con.createStatement();
-            String query = "SELECT * FROM riwayat";
-            ResultSet rs = stmt.executeQuery(query);
+            try {
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_user_database", "root", "");
+                Statement stmt = con.createStatement();
+                String query = "SELECT r.riwayat_id, r.pemasukkan_id, r.pengeluaran_id, p.jumlah AS pemasukkan_jumlah, p.tanggal AS pemasukkan_tanggal, p.keterangan AS pemasukkan_keterangan, "
+                        + "e.jumlah AS pengeluaran_jumlah, e.tanggal AS pengeluaran_tanggal, e.keterangan AS pengeluaran_keterangan "
+                        + "FROM riwayat r "
+                        + "LEFT JOIN pemasukkan p ON r.pemasukkan_id = p.pemasukkan_id "
+                        + "LEFT JOIN pengeluaran e ON r.pengeluaran_id = e.pengeluaran_id";
+                ResultSet rs = stmt.executeQuery(query);
 
-            DefaultTableModel model = (DefaultTableModel) TableRiTra.getModel();
-            model.setRowCount(0); // Clear existing rows
+                DefaultTableModel model = (DefaultTableModel) TableRiTra.getModel();
+                model.setRowCount(0); // Clear existing rows
 
-            while (rs.next()) {
-                int riwayat_id = rs.getInt("riwayat_id");
-                int pemasukkan_id = rs.getInt("pemasukkan_id");
-                int pengeluaran_id = rs.getInt("pengeluaran_id");
-                int pemasukkan_jumlah = rs.getInt("pemasukkan_jumlah");
-                Timestamp pemasukkan_tanggal = rs.getTimestamp("pemasukkan_tanggal");
-                String pemasukkan_keterangan = rs.getString("pemasukkan_keterangan");
-                int pengeluaran_jumlah = rs.getInt("pengeluaran_jumlah");
-                Timestamp pengeluaran_tanggal = rs.getTimestamp("pengeluaran_tanggal");
-                String pengeluaran_keterangan = rs.getString("pengeluaran_keterangan");
+                while (rs.next()) {
+                    int riwayat_id = rs.getInt("riwayat_id");
+                    int pemasukkan_id = rs.getInt("pemasukkan_id");
+                    int pengeluaran_id = rs.getInt("pengeluaran_id");
+                    int pemasukkan_jumlah = rs.getInt("pemasukkan_jumlah");
+                    Timestamp pemasukkan_tanggal = rs.getTimestamp("pemasukkan_tanggal");
+                    String pemasukkan_keterangan = rs.getString("pemasukkan_keterangan");
+                    int pengeluaran_jumlah = rs.getInt("pengeluaran_jumlah");
+                    Timestamp pengeluaran_tanggal = rs.getTimestamp("pengeluaran_tanggal");
+                    String pengeluaran_keterangan = rs.getString("pengeluaran_keterangan");
 
-                // Formatting the timestamps to a readable date format
-                String pemasukkan_tanggal_str = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(pemasukkan_tanggal);
-                String pengeluaran_tanggal_str = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(pengeluaran_tanggal);
+                    // Formatting the timestamps to a readable date format
+                    String pemasukkan_tanggal_str = pemasukkan_tanggal != null ? new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(pemasukkan_tanggal) : "";
+                    String pengeluaran_tanggal_str = pengeluaran_tanggal != null ? new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(pengeluaran_tanggal) : "";
 
-                model.addRow(new Object[]{
-                    riwayat_id, pemasukkan_id, pengeluaran_id, pemasukkan_jumlah,
-                    pemasukkan_tanggal_str, pemasukkan_keterangan, pengeluaran_jumlah,
-                    pengeluaran_tanggal_str, pengeluaran_keterangan
-                });
+                    System.out.println("Fetched row: " + riwayat_id + ", " + pemasukkan_id + ", " + pengeluaran_id);
+
+                    model.addRow(new Object[]{
+                        riwayat_id, pemasukkan_id, pengeluaran_id, pemasukkan_jumlah,
+                        pemasukkan_tanggal_str, pemasukkan_keterangan, pengeluaran_jumlah,
+                        pengeluaran_tanggal_str, pengeluaran_keterangan
+                    });
+                }
+
+                con.close();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-
-            con.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
         
@@ -209,7 +215,7 @@ public final class PageRiTra extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8", "Title 9"
+                "riwayat_id", "pemasukkan_id", "pengeluaran_id", "Jumlah Pemasukkan", "Tanggal pemasukkan", "Keterangan Pemasukkan", "Jumlah Pengeluaran", "Tanggal Pengeluaran", "Keterangan Pengeluaran"
             }
         ));
         jScrollPane1.setViewportView(TableRiTra);
