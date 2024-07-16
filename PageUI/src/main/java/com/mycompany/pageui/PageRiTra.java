@@ -4,18 +4,68 @@
  */
 package com.mycompany.pageui;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JFrame;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ASUS
  */
 public class PageRiTra extends javax.swing.JFrame {
+    
+
+    public PageRiTra() {
+        initComponents();
+        tableRiwayat = new javax.swing.JTable();
+        loadData();
+    }
+
+    private void loadData() {
+        DefaultTableModel model = new DefaultTableModel(new String[]{"Jenis", "Jumlah", "Keterangan"}, 0);
+        tableRiwayat.setModel(model);
+
+        Connection conn = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            String url = "jdbc:mysql://localhost:3306/java_user_database";
+            String user = "root";
+            String pass = "";
+            conn = DriverManager.getConnection(url, user, pass);
+            stmt = conn.createStatement();
+            String sql = "SELECT tanggal, jumlah, keterangan FROM ritra";
+            rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                String tanggal = rs.getString("pemasukkan");
+                String jumlah = rs.getString("jumlah");
+                String keterangan = rs.getString("keterangan");
+                model.addRow(new Object[]{tanggal, jumlah, keterangan});
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                if (conn != null) conn.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+        
 
     /**
      * Creates new form PageRiTra
      */
-    public PageRiTra() {
-        initComponents();
-    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -29,18 +79,20 @@ public class PageRiTra extends javax.swing.JFrame {
         jBg = new javax.swing.JPanel();
         index = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        home = new javax.swing.JButton();
-        outcome = new javax.swing.JButton();
-        income = new javax.swing.JButton();
-        RiTra = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        RiTraPage = new javax.swing.JPanel();
+        RiTra = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableRiwayat = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jBg.setBackground(new java.awt.Color(0, 0, 102));
-        jBg.setPreferredSize(new java.awt.Dimension(1400, 800));
 
         index.setBackground(new java.awt.Color(0, 51, 153));
         index.setPreferredSize(new java.awt.Dimension(310, 800));
@@ -50,55 +102,55 @@ public class PageRiTra extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("WALLET");
 
-        home.setBackground(new java.awt.Color(0, 51, 153));
-        home.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        home.setForeground(new java.awt.Color(255, 255, 255));
-        home.setText("Home");
-        home.setBorderPainted(false);
-        home.setContentAreaFilled(false);
-        home.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        home.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setBackground(new java.awt.Color(0, 51, 153));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Home");
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                homeActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
-        outcome.setBackground(new java.awt.Color(0, 51, 153));
-        outcome.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        outcome.setForeground(new java.awt.Color(255, 255, 255));
-        outcome.setText("Pengeluaran");
-        outcome.setBorderPainted(false);
-        outcome.setContentAreaFilled(false);
-        outcome.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        outcome.addActionListener(new java.awt.event.ActionListener() {
+        jButton5.setBackground(new java.awt.Color(0, 51, 153));
+        jButton5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
+        jButton5.setText("Pengeluaran");
+        jButton5.setBorderPainted(false);
+        jButton5.setContentAreaFilled(false);
+        jButton5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                outcomeActionPerformed(evt);
+                jButton5ActionPerformed(evt);
             }
         });
 
-        income.setBackground(new java.awt.Color(0, 51, 153));
-        income.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        income.setForeground(new java.awt.Color(255, 255, 255));
-        income.setText("Pemasukkan");
-        income.setBorderPainted(false);
-        income.setContentAreaFilled(false);
-        income.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        income.addActionListener(new java.awt.event.ActionListener() {
+        jButton6.setBackground(new java.awt.Color(0, 51, 153));
+        jButton6.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(255, 255, 255));
+        jButton6.setText("Pemasukkan");
+        jButton6.setBorderPainted(false);
+        jButton6.setContentAreaFilled(false);
+        jButton6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                incomeActionPerformed(evt);
+                jButton6ActionPerformed(evt);
             }
         });
 
-        RiTra.setBackground(new java.awt.Color(0, 51, 153));
-        RiTra.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        RiTra.setForeground(new java.awt.Color(255, 255, 255));
-        RiTra.setText("Riwayat Transaksi");
-        RiTra.setBorderPainted(false);
-        RiTra.setContentAreaFilled(false);
-        RiTra.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        RiTra.addActionListener(new java.awt.event.ActionListener() {
+        jButton7.setBackground(new java.awt.Color(0, 51, 153));
+        jButton7.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(255, 255, 255));
+        jButton7.setText("Riwayat Transaksi");
+        jButton7.setBorderPainted(false);
+        jButton7.setContentAreaFilled(false);
+        jButton7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RiTraActionPerformed(evt);
+                jButton7ActionPerformed(evt);
             }
         });
 
@@ -110,10 +162,10 @@ public class PageRiTra extends javax.swing.JFrame {
             .addGroup(indexLayout.createSequentialGroup()
                 .addGap(0, 50, Short.MAX_VALUE)
                 .addGroup(indexLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(home, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(outcome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(income, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(RiTra, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGroup(indexLayout.createSequentialGroup()
                 .addGap(81, 81, 81)
                 .addComponent(jLabel2)
@@ -127,34 +179,81 @@ public class PageRiTra extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addGap(61, 61, 61)
-                .addComponent(home)
+                .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(income)
+                .addComponent(jButton6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(outcome)
+                .addComponent(jButton5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(RiTra)
+                .addComponent(jButton7)
                 .addContainerGap(323, Short.MAX_VALUE))
         );
 
-        RiTraPage.setBackground(new java.awt.Color(0, 0, 102));
+        RiTra.setBackground(new java.awt.Color(0, 0, 102));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Riwayat Transaksi");
 
-        javax.swing.GroupLayout RiTraPageLayout = new javax.swing.GroupLayout(RiTraPage);
-        RiTraPage.setLayout(RiTraPageLayout);
-        RiTraPageLayout.setHorizontalGroup(
-            RiTraPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1084, Short.MAX_VALUE)
+        jPanel1.setBackground(new java.awt.Color(51, 102, 255));
+
+        tableRiwayat.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "tanggal", "jumlah", "keterangan"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tableRiwayat);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 873, Short.MAX_VALUE)
         );
-        RiTraPageLayout.setVerticalGroup(
-            RiTraPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(RiTraPageLayout.createSequentialGroup()
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 561, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout RiTraLayout = new javax.swing.GroupLayout(RiTra);
+        RiTra.setLayout(RiTraLayout);
+        RiTraLayout.setHorizontalGroup(
+            RiTraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1084, Short.MAX_VALUE)
+            .addGroup(RiTraLayout.createSequentialGroup()
+                .addGap(111, 111, 111)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        RiTraLayout.setVerticalGroup(
+            RiTraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(RiTraLayout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -165,7 +264,7 @@ public class PageRiTra extends javax.swing.JFrame {
             .addGroup(jBgLayout.createSequentialGroup()
                 .addComponent(index, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(RiTraPage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(RiTra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jBgLayout.setVerticalGroup(
             jBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,7 +272,7 @@ public class PageRiTra extends javax.swing.JFrame {
                 .addComponent(index, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jBgLayout.createSequentialGroup()
-                .addComponent(RiTraPage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(RiTra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -181,97 +280,71 @@ public class PageRiTra extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jBg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jBg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jBg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jBg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void homeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeActionPerformed
-        PageHome PageHomeFrame = new PageHome();
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       PageHome PageHomeFrame = new PageHome();
         PageHomeFrame.setVisible(true);
         PageHomeFrame.pack();
         PageHomeFrame.setLocationRelativeTo(null);
-        this.dispose();
-    }//GEN-LAST:event_homeActionPerformed
+        this.dispose(); 
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void outcomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_outcomeActionPerformed
-        PagePengeluaran PagePengeluaranFrame = new PagePengeluaran();
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+       PagePengeluaran PagePengeluaranFrame = new PagePengeluaran();
         PagePengeluaranFrame.setVisible(true);
         PagePengeluaranFrame.pack();
         PagePengeluaranFrame.setLocationRelativeTo(null);
-        this.dispose();
-    }//GEN-LAST:event_outcomeActionPerformed
+        this.dispose(); 
+    }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void incomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incomeActionPerformed
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         PagePemasukkan PagePemasukkanFrame = new PagePemasukkan();
         PagePemasukkanFrame.setVisible(true);
         PagePemasukkanFrame.pack();
         PagePemasukkanFrame.setLocationRelativeTo(null);
         this.dispose();
-    }//GEN-LAST:event_incomeActionPerformed
+    }//GEN-LAST:event_jButton6ActionPerformed
 
-    private void RiTraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RiTraActionPerformed
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         PageRiTra PageRiTraFrame = new PageRiTra();
         PageRiTraFrame.setVisible(true);
         PageRiTraFrame.pack();
         PageRiTraFrame.setLocationRelativeTo(null);
         this.dispose();
-    }//GEN-LAST:event_RiTraActionPerformed
-
+    }//GEN-LAST:event_jButton7ActionPerformed
+    
+    
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PageRiTra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PageRiTra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PageRiTra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PageRiTra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PageRiTra().setVisible(true);
-            }
+    public static void main(String[] args) {
+        java.awt.EventQueue.invokeLater(() -> {
+            new PageRiTra().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton RiTra;
-    private javax.swing.JPanel RiTraPage;
-    private javax.swing.JButton home;
-    private javax.swing.JButton income;
+    private javax.swing.JPanel RiTra;
     private javax.swing.JPanel index;
     private javax.swing.JPanel jBg;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JButton outcome;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tableRiwayat;
     // End of variables declaration//GEN-END:variables
 }

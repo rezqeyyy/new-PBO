@@ -6,10 +6,12 @@ package com.mycompany.pageui;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -22,6 +24,113 @@ public class PagePemasukkan extends javax.swing.JFrame {
      */
     public PagePemasukkan() {
         initComponents();
+      setTitle("FORM PAGE PEMASUKAN");
+        this.setLocation(200, 100);
+        PageUI.getConnection();
+        refreshPemasukan();
+        BtnEdit.setEnabled(false);
+    }
+
+    private void SimpanPemasukan() {
+        String sql = "INSERT INTO pemasukkan (jumlah, keterangan) VALUES (?, ?)";
+
+        try {
+            PreparedStatement st = PageUI.conn.prepareStatement(sql);
+            st.setString(1, txtPemasukan.getText());
+            st.setString(2, txtKet.getText());
+            st.execute();
+            JOptionPane.showMessageDialog(this, "Data berhasil disimpan");
+            refreshPemasukan();
+            clearData();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+        }
+    }
+
+    private void editPemasukan() {
+        String sql = "UPDATE pemasukkan SET jumlah=?, keterangan=? WHERE pemasukkan_id=?";
+
+        try {
+            PreparedStatement st = PageUI.conn.prepareStatement(sql);
+            st.setString(1, txtPemasukan.getText());
+            st.setString(2, txtKet.getText());
+            st.setString(3, TablePemasukkan.getValueAt(TablePemasukkan.getSelectedRow(), 0).toString());
+            st.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Data berhasil diupdate");
+            refreshPemasukan();
+            clearData();
+            BtnEdit.setEnabled(false);
+            BtnAdd.setEnabled(true);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+        }
+    }
+
+    private void hapusPemasukan(String pemasukkanId) {
+        String sql = "DELETE FROM pemasukkan WHERE pemasukkan_id=?";
+        try {
+            PreparedStatement st = PageUI.conn.prepareStatement(sql);
+            st.setString(1, pemasukkanId);
+            st.execute();
+            JOptionPane.showMessageDialog(this, "Data berhasil dihapus");
+            refreshPemasukan();
+            clearData();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+        }
+    }
+
+    private void tampilPemasukan(String pemasukkanId) {
+        Statement st;
+        ResultSet rs;
+        try {
+            st = PageUI.conn.createStatement();
+            String sql = "SELECT * FROM pemasukkan WHERE pemasukkan_id='" + pemasukkanId + "'";
+            rs = st.executeQuery(sql);
+            if (rs.next()) {
+                txtPemasukan.setText(rs.getString("jumlah"));
+                txtKet.setText(rs.getString("keterangan"));
+            } else {
+                JOptionPane.showMessageDialog(this, "Data tidak ditemukan");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+        }
+    }
+
+    public void refreshPemasukan() {
+        Statement st;
+        ResultSet rs;
+        try {
+            st = PageUI.conn.createStatement();
+            String sql = "SELECT * FROM pemasukkan ORDER BY pemasukkan_id ASC";
+            rs = st.executeQuery(sql);
+            String[] header = {"Pemasukkan ID", "Tanggal", "Jumlah", "Keterangan"};
+            DefaultTableModel model = new DefaultTableModel(header, 0);
+            while (rs.next()) {
+                Object[] row = {
+                    rs.getString("pemasukkan_id"),
+                    rs.getString("tanggal"),
+                    rs.getString("jumlah"),
+                    rs.getString("keterangan")
+                };
+                model.addRow(row);
+            }
+            TablePemasukkan.setModel(model);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+        }
+    }
+
+    private void clearData() {
+        txtPemasukan.setText("");
+        txtKet.setText("");
+        txtPemasukan.requestFocus();
+    }
+
+    void Keluar() {
+        int jawab = javax.swing.JOptionPane.showConfirmDialog(null, "Kamu yakin ingin keluar?", "Konfirmasi", javax.swing.JOptionPane.YES_NO_OPTION);
+        if (jawab == 0) this.dispose();
     }
 
     /**
@@ -44,10 +153,15 @@ public class PagePemasukkan extends javax.swing.JFrame {
         Pemasukkan = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
-        jPemasukkan = new javax.swing.JTextField();
+        txtPemasukan = new javax.swing.JTextField();
         jLabel31 = new javax.swing.JLabel();
-        kPemasukkan = new javax.swing.JTextField();
-        createPemasukkan = new javax.swing.JButton();
+        txtKet = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TablePemasukkan = new javax.swing.JTable();
+        BtnAdd = new javax.swing.JButton();
+        BtnDelete = new javax.swing.JButton();
+        BtnScr = new javax.swing.JButton();
+        BtnEdit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -160,9 +274,9 @@ public class PagePemasukkan extends javax.swing.JFrame {
         jLabel30.setForeground(new java.awt.Color(255, 255, 255));
         jLabel30.setText("Jumlah");
 
-        jPemasukkan.addActionListener(new java.awt.event.ActionListener() {
+        txtPemasukan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPemasukkanActionPerformed(evt);
+                txtPemasukanActionPerformed(evt);
             }
         });
 
@@ -170,16 +284,51 @@ public class PagePemasukkan extends javax.swing.JFrame {
         jLabel31.setForeground(new java.awt.Color(255, 255, 255));
         jLabel31.setText("Keterangan");
 
-        kPemasukkan.addActionListener(new java.awt.event.ActionListener() {
+        txtKet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                kPemasukkanActionPerformed(evt);
+                txtKetActionPerformed(evt);
             }
         });
 
-        createPemasukkan.setText("Create");
-        createPemasukkan.addActionListener(new java.awt.event.ActionListener() {
+        TablePemasukkan.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(TablePemasukkan);
+
+        BtnAdd.setText("Add");
+        BtnAdd.setActionCommand("Add");
+        BtnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createPemasukkanActionPerformed(evt);
+                BtnAddActionPerformed(evt);
+            }
+        });
+
+        BtnDelete.setText("Delete");
+        BtnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnDeleteActionPerformed(evt);
+            }
+        });
+
+        BtnScr.setText("Search");
+        BtnScr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnScrActionPerformed(evt);
+            }
+        });
+
+        BtnEdit.setText("Edit");
+        BtnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEditActionPerformed(evt);
             }
         });
 
@@ -193,10 +342,19 @@ public class PagePemasukkan extends javax.swing.JFrame {
                 .addGroup(PemasukkanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel31)
                     .addComponent(jLabel30)
-                    .addComponent(jPemasukkan)
-                    .addComponent(kPemasukkan, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(createPemasukkan))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtPemasukan)
+                    .addComponent(txtKet, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(PemasukkanLayout.createSequentialGroup()
+                        .addComponent(BtnAdd)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BtnScr)
+                        .addGap(18, 18, 18)
+                        .addComponent(BtnEdit)
+                        .addGap(18, 18, 18)
+                        .addComponent(BtnDelete)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 564, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50))
         );
         PemasukkanLayout.setVerticalGroup(
             PemasukkanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -204,16 +362,23 @@ public class PagePemasukkan extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
-                .addComponent(jLabel30)
-                .addGap(18, 18, 18)
-                .addComponent(jPemasukkan, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel31)
-                .addGap(18, 18, 18)
-                .addComponent(kPemasukkan, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
-                .addComponent(createPemasukkan)
-                .addContainerGap(373, Short.MAX_VALUE))
+                .addGroup(PemasukkanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PemasukkanLayout.createSequentialGroup()
+                        .addComponent(jLabel30)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtPemasukan, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel31)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtKet, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47)
+                        .addGroup(PemasukkanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(BtnAdd)
+                            .addComponent(BtnDelete)
+                            .addComponent(BtnEdit)
+                            .addComponent(BtnScr)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jBgLayout = new javax.swing.GroupLayout(jBg);
@@ -254,71 +419,50 @@ public class PagePemasukkan extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void homeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeActionPerformed
-        PageHome PageHomeFrame = new PageHome();
-        PageHomeFrame.setVisible(true);
-        PageHomeFrame.pack(); 
-        PageHomeFrame.setLocationRelativeTo(null);
-        this.dispose();
+        
+
     }//GEN-LAST:event_homeActionPerformed
 
     private void outcomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_outcomeActionPerformed
-        PagePengeluaran PagePengeluaranFrame = new PagePengeluaran();
-        PagePengeluaranFrame.setVisible(true);
-        PagePengeluaranFrame.pack();
-        PagePengeluaranFrame.setLocationRelativeTo(null);
-        this.dispose();
+        
     }//GEN-LAST:event_outcomeActionPerformed
 
     private void incomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incomeActionPerformed
-        PagePemasukkan PagePemasukkanFrame = new PagePemasukkan();
-        PagePemasukkanFrame.setVisible(true);
-        PagePemasukkanFrame.pack(); 
-        PagePemasukkanFrame.setLocationRelativeTo(null);
-        this.dispose();
+        
     }//GEN-LAST:event_incomeActionPerformed
 
     private void RiTraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RiTraActionPerformed
-        PageRiTra PageRiTraFrame = new PageRiTra();
-        PageRiTraFrame.setVisible(true);
-        PageRiTraFrame.pack();
-        PageRiTraFrame.setLocationRelativeTo(null);
-        this.dispose();
+        
     }//GEN-LAST:event_RiTraActionPerformed
 
-    private void jPemasukkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPemasukkanActionPerformed
+    private void txtPemasukanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPemasukanActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPemasukkanActionPerformed
+    }//GEN-LAST:event_txtPemasukanActionPerformed
 
-    private void kPemasukkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kPemasukkanActionPerformed
+    private void txtKetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtKetActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_kPemasukkanActionPerformed
+    }//GEN-LAST:event_txtKetActionPerformed
 
-    private void createPemasukkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createPemasukkanActionPerformed
-        String jMasuk, kMasuk, query;
+    private void BtnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddActionPerformed
+        SimpanPemasukan();
+    }//GEN-LAST:event_BtnAddActionPerformed
 
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
+    private void BtnScrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnScrActionPerformed
+        String pemasukkanId = JOptionPane.showInputDialog(this, "Masukkan Pemasukkan ID:");
+        tampilPemasukan(pemasukkanId);
+    }//GEN-LAST:event_BtnScrActionPerformed
 
-            String url = "jdbc:mysql://localhost:3306/java_user_db";
-            String user = "root";
-            String pass = "";
+    private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditActionPerformed
+       editPemasukan();
+       
+    BtnAdd.setEnabled(true);
+    BtnEdit.setEnabled(false);
+    }//GEN-LAST:event_BtnEditActionPerformed
 
-            try (Connection con = DriverManager.getConnection(url, user, pass)) {
-                Statement st = con.createStatement();
-
-                jMasuk = jPemasukkan.getText();
-                kMasuk = kPemasukkan.getText();
-                query = "INSERT INTO pemasukkan(jumlah, keterangan) VALUES ('"+jMasuk+"', '"+kMasuk+"')";
-
-                st.executeUpdate(query);
-            } catch (SQLException ex) {
-                Logger.getLogger(halamanUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        }catch(ClassNotFoundException e){
-            System.out.print("Error " + e.getMessage());
-        }
-    }//GEN-LAST:event_createPemasukkanActionPerformed
+    private void BtnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDeleteActionPerformed
+           String pemasukkanId = TablePemasukkan.getValueAt(TablePemasukkan.getSelectedRow(), 0).toString();
+        hapusPemasukan(pemasukkanId);
+    }//GEN-LAST:event_BtnDeleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -356,9 +500,13 @@ public class PagePemasukkan extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnAdd;
+    private javax.swing.JButton BtnDelete;
+    private javax.swing.JButton BtnEdit;
+    private javax.swing.JButton BtnScr;
     private javax.swing.JPanel Pemasukkan;
     private javax.swing.JButton RiTra;
-    private javax.swing.JButton createPemasukkan;
+    private javax.swing.JTable TablePemasukkan;
     private javax.swing.JButton home;
     private javax.swing.JButton income;
     private javax.swing.JPanel index;
@@ -368,8 +516,9 @@ public class PagePemasukkan extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
-    private javax.swing.JTextField jPemasukkan;
-    private javax.swing.JTextField kPemasukkan;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton outcome;
+    private javax.swing.JTextField txtKet;
+    private javax.swing.JTextField txtPemasukan;
     // End of variables declaration//GEN-END:variables
 }

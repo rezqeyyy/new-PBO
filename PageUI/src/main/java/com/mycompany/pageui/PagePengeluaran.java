@@ -297,7 +297,7 @@ public class PagePengeluaran extends javax.swing.JFrame {
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            String url = "jdbc:mysql://localhost:3306/java_user_db";
+            String url = "jdbc:mysql://localhost:3306/java_user_database";
             String user = "root";
             String pass = "";
 
