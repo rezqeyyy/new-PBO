@@ -30,6 +30,13 @@ public class PagePemasukkan extends javax.swing.JFrame {
         refreshPemasukan();
         BtnEdit.setEnabled(false);
     }
+    /*
+    initComponents(): Memanggil metode yang menginisialisasi komponen GUI.
+    setTitle("FORM DATA ANGGOTA"): Mengatur judul dari jendela aplikasi menjadi "FORM DATA ANGGOTA".
+    this.setLocation(200, 100): Mengatur posisi jendela pada layar.
+    ProjectPakKhadafi.getConnection(): Memanggil metode untuk mendapatkan koneksi ke database dari kelas ProjectPakKhadafi.
+    refreshSiswa(): Metode untuk memperbarui data siswa (belum diberikan di kode, tetapi diasumsikan ada untuk menyegarkan data di tabel atau list).
+    BtnEdit.setEnabled(false): Menonaktifkan tombol edit saat pertama kali aplikasi dijalankan.*/
 
     private void SimpanPemasukan() {
         String sql = "INSERT INTO pemasukkan (jumlah, keterangan) VALUES (?, ?)";

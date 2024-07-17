@@ -34,6 +34,7 @@ public class PageHome extends javax.swing.JFrame {
         income = new javax.swing.JButton();
         RiTra = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         HomePage = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -103,39 +104,49 @@ public class PageHome extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\rizqi\\OneDrive\\Documents\\edit apaan aja\\PBO\\1x\\logo PBO.png")); // NOI18N
+        jLabel6.setText("jLabel6");
+
         javax.swing.GroupLayout indexLayout = new javax.swing.GroupLayout(index);
         index.setLayout(indexLayout);
         indexLayout.setHorizontalGroup(
             indexLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(indexLayout.createSequentialGroup()
-                .addGap(0, 50, Short.MAX_VALUE)
-                .addGroup(indexLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(home, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(outcome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(income, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(RiTra, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addGroup(indexLayout.createSequentialGroup()
-                .addGap(81, 81, 81)
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(indexLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(indexLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, indexLayout.createSequentialGroup()
+                        .addGap(0, 38, Short.MAX_VALUE)
+                        .addGroup(indexLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(home, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(income, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(RiTra, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(outcome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
         );
         indexLayout.setVerticalGroup(
             indexLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(indexLayout.createSequentialGroup()
                 .addGap(56, 56, 56)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGroup(indexLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(57, 57, 57)
                 .addComponent(jLabel1)
-                .addGap(61, 61, 61)
+                .addGap(18, 18, 18)
                 .addComponent(home)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(income)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(outcome)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(RiTra)
-                .addContainerGap(323, Short.MAX_VALUE))
+                .addContainerGap(262, Short.MAX_VALUE))
         );
 
         HomePage.setBackground(new java.awt.Color(0, 0, 102));
@@ -206,13 +217,21 @@ public class PageHome extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void homeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeActionPerformed
-        PageHome PageHomeFrame = new PageHome();
-        PageHomeFrame.setVisible(true);
-        PageHomeFrame.pack(); 
-        PageHomeFrame.setLocationRelativeTo(null);
+    private void RiTraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RiTraActionPerformed
+        PageRiTra PageRiTraFrame = new PageRiTra();
+        PageRiTraFrame.setVisible(true);
+        PageRiTraFrame.pack();
+        PageRiTraFrame.setLocationRelativeTo(null);
         this.dispose();
-    }//GEN-LAST:event_homeActionPerformed
+    }//GEN-LAST:event_RiTraActionPerformed
+
+    private void incomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incomeActionPerformed
+        PagePemasukkan PagePemasukkanFrame = new PagePemasukkan();
+        PagePemasukkanFrame.setVisible(true);
+        PagePemasukkanFrame.pack();
+        PagePemasukkanFrame.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_incomeActionPerformed
 
     private void outcomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_outcomeActionPerformed
         PagePengeluaran PagePengeluaranFrame = new PagePengeluaran();
@@ -222,21 +241,13 @@ public class PageHome extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_outcomeActionPerformed
 
-    private void incomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incomeActionPerformed
-        PagePemasukkan PagePemasukkanFrame = new PagePemasukkan();
-        PagePemasukkanFrame.setVisible(true);
-        PagePemasukkanFrame.pack(); 
-        PagePemasukkanFrame.setLocationRelativeTo(null);
+    private void homeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeActionPerformed
+        PageHome PageHomeFrame = new PageHome();
+        PageHomeFrame.setVisible(true);
+        PageHomeFrame.pack();
+        PageHomeFrame.setLocationRelativeTo(null);
         this.dispose();
-    }//GEN-LAST:event_incomeActionPerformed
-
-    private void RiTraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RiTraActionPerformed
-        PageRiTra PageRiTraFrame = new PageRiTra();
-        PageRiTraFrame.setVisible(true);
-        PageRiTraFrame.pack();
-        PageRiTraFrame.setLocationRelativeTo(null);
-        this.dispose();
-    }//GEN-LAST:event_RiTraActionPerformed
+    }//GEN-LAST:event_homeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -284,6 +295,7 @@ public class PageHome extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JButton outcome;
     // End of variables declaration//GEN-END:variables
 }
