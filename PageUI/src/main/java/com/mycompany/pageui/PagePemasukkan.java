@@ -28,7 +28,6 @@ public class PagePemasukkan extends javax.swing.JFrame {
         this.setLocation(200, 100);
         PageUI.getConnection();
         refreshPemasukan();
-        BtnEdit.setEnabled(false);
     }
     /*
     initComponents(): Memanggil metode yang menginisialisasi komponen GUI.
@@ -66,7 +65,6 @@ public class PagePemasukkan extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Data berhasil diupdate");
             refreshPemasukan();
             clearData();
-            BtnEdit.setEnabled(false);
             BtnAdd.setEnabled(true);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
@@ -87,19 +85,25 @@ public class PagePemasukkan extends javax.swing.JFrame {
         }
     }
 
-    private void tampilPemasukan(String pemasukkanId) {
+    private void tampilPemasukkan(String keyword) {
         Statement st;
         ResultSet rs;
         try {
             st = PageUI.conn.createStatement();
-            String sql = "SELECT * FROM pemasukkan WHERE pemasukkan_id='" + pemasukkanId + "'";
+            String sql = "SELECT * FROM pemasukkan WHERE keterangan LIKE '%" + keyword + "%'";
             rs = st.executeQuery(sql);
-            if (rs.next()) {
-                txtPemasukan.setText(rs.getString("jumlah"));
-                txtKet.setText(rs.getString("keterangan"));
-            } else {
-                JOptionPane.showMessageDialog(this, "Data tidak ditemukan");
+            String[] header = {"pemasukkan_id", "Tanggal", "Jumlah", "Keterangan"};
+            DefaultTableModel model = new DefaultTableModel(header, 0);
+            while (rs.next()) {
+                Object[] row = {
+                    rs.getString("pemasukkan_id"),
+                    rs.getString("tanggal"),
+                    rs.getString("jumlah"),
+                    rs.getString("keterangan")
+                };
+                model.addRow(row);
             }
+            TablePemasukkan.setModel(model);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
         }
@@ -167,7 +171,6 @@ public class PagePemasukkan extends javax.swing.JFrame {
         TablePemasukkan = new javax.swing.JTable();
         BtnAdd = new javax.swing.JButton();
         BtnScr = new javax.swing.JButton();
-        BtnEdit = new javax.swing.JButton();
         BtnDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -332,13 +335,6 @@ public class PagePemasukkan extends javax.swing.JFrame {
             }
         });
 
-        BtnEdit.setText("Edit");
-        BtnEdit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnEditActionPerformed(evt);
-            }
-        });
-
         BtnDelete.setText("Delete");
         BtnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -362,8 +358,6 @@ public class PagePemasukkan extends javax.swing.JFrame {
                         .addComponent(BtnAdd)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BtnScr)
-                        .addGap(18, 18, 18)
-                        .addComponent(BtnEdit)
                         .addGap(18, 18, 18)
                         .addComponent(BtnDelete)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -389,7 +383,6 @@ public class PagePemasukkan extends javax.swing.JFrame {
                         .addGroup(PemasukkanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(BtnAdd)
                             .addComponent(BtnDelete)
-                            .addComponent(BtnEdit)
                             .addComponent(BtnScr)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -478,21 +471,14 @@ public class PagePemasukkan extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnAddActionPerformed
 
     private void BtnScrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnScrActionPerformed
-        String pemasukkanId = JOptionPane.showInputDialog(this, "Masukkan Pemasukkan ID:");
-        tampilPemasukan(pemasukkanId);
+        String pemasukkanId = JOptionPane.showInputDialog(this, "Cari Pemasukkan:");
+        tampilPemasukkan(pemasukkanId);
     }//GEN-LAST:event_BtnScrActionPerformed
 
     private void BtnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDeleteActionPerformed
         String pemasukkanId = TablePemasukkan.getValueAt(TablePemasukkan.getSelectedRow(), 0).toString();
         hapusPemasukan(pemasukkanId);
     }//GEN-LAST:event_BtnDeleteActionPerformed
-
-    private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditActionPerformed
-        editPemasukan();
-
-        BtnAdd.setEnabled(true);
-        BtnEdit.setEnabled(false);
-    }//GEN-LAST:event_BtnEditActionPerformed
 
     /**
      * @param args the command line arguments
@@ -532,7 +518,6 @@ public class PagePemasukkan extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAdd;
     private javax.swing.JButton BtnDelete;
-    private javax.swing.JButton BtnEdit;
     private javax.swing.JButton BtnScr;
     private javax.swing.JLabel HeadMasuk;
     private javax.swing.JPanel Pemasukkan;

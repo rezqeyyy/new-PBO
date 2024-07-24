@@ -28,7 +28,6 @@ public class PagePengeluaran extends javax.swing.JFrame {
         this.setLocation(200, 100);
         PageUI.getConnection();
         refreshPengeluaran();
-        BtnEdit.setEnabled(false);
     }
     
     private void SimpanPengeluaran() {
@@ -59,7 +58,6 @@ public class PagePengeluaran extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Data berhasil diupdate");
             refreshPengeluaran();
             clearData();
-            BtnEdit.setEnabled(false);
             BtnAdd.setEnabled(true);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
@@ -80,19 +78,25 @@ public class PagePengeluaran extends javax.swing.JFrame {
         }
     }
 
-    private void tampilPengeluaran(String pengeluaranId) {
+    private void tampilPengeluaran(String keyword) {
         Statement st;
         ResultSet rs;
         try {
             st = PageUI.conn.createStatement();
-            String sql = "SELECT * FROM pengeluaran WHERE pengeluaran_id='" + pengeluaranId + "'";
+            String sql = "SELECT * FROM pengeluaran WHERE keterangan LIKE '%" + keyword + "%'";
             rs = st.executeQuery(sql);
-            if (rs.next()) {
-                txtPengeluaran.setText(rs.getString("jumlah"));
-                txtKeterangan.setText(rs.getString("keterangan"));
-            } else {
-                JOptionPane.showMessageDialog(this, "Data tidak ditemukan");
+            String[] header = {"pengeluaran_id", "Tanggal", "Jumlah", "Keterangan"};
+            DefaultTableModel model = new DefaultTableModel(header, 0);
+            while (rs.next()) {
+                Object[] row = {
+                    rs.getString("pengeluaran_id"),
+                    rs.getString("tanggal"),
+                    rs.getString("jumlah"),
+                    rs.getString("keterangan")
+                };
+                model.addRow(row);
             }
+            TablePengeluaran.setModel(model);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
         }
@@ -158,7 +162,6 @@ public class PagePengeluaran extends javax.swing.JFrame {
         txtKeterangan = new javax.swing.JTextField();
         BtnAdd = new javax.swing.JButton();
         BtnScr = new javax.swing.JButton();
-        BtnEdit = new javax.swing.JButton();
         BtnDelete = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         TablePengeluaran = new javax.swing.JTable();
@@ -304,8 +307,6 @@ public class PagePengeluaran extends javax.swing.JFrame {
             }
         });
 
-        BtnEdit.setText("Edit");
-
         BtnDelete.setText("Delete");
         BtnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -333,18 +334,16 @@ public class PagePengeluaran extends javax.swing.JFrame {
             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 1084, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(PengeluaranLayout.createSequentialGroup()
                 .addGap(80, 80, 80)
-                .addGroup(PengeluaranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PengeluaranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel30)
                     .addComponent(txtPengeluaran, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel31)
                     .addComponent(txtKeterangan, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(PengeluaranLayout.createSequentialGroup()
                         .addComponent(BtnAdd)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BtnScr)
-                        .addGap(22, 22, 22)
-                        .addComponent(BtnEdit)
-                        .addGap(12, 12, 12)
+                        .addGap(18, 18, 18)
                         .addComponent(BtnDelete)))
                 .addGap(48, 48, 48)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -367,9 +366,9 @@ public class PagePengeluaran extends javax.swing.JFrame {
                         .addGap(39, 39, 39)
                         .addGroup(PengeluaranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(BtnAdd)
-                            .addComponent(BtnScr)
-                            .addComponent(BtnEdit)
-                            .addComponent(BtnDelete)))
+                            .addGroup(PengeluaranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(BtnDelete)
+                                .addComponent(BtnScr))))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
@@ -455,7 +454,7 @@ public class PagePengeluaran extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnAddActionPerformed
 
     private void BtnScrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnScrActionPerformed
-        String pengeluaranId = JOptionPane.showInputDialog(this, "Masukkan Pengeluaran ID:");
+        String pengeluaranId = JOptionPane.showInputDialog(this, "Cari Pengeluaran:");
         tampilPengeluaran(pengeluaranId);
     }//GEN-LAST:event_BtnScrActionPerformed
 
@@ -502,7 +501,6 @@ public class PagePengeluaran extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAdd;
     private javax.swing.JButton BtnDelete;
-    private javax.swing.JButton BtnEdit;
     private javax.swing.JButton BtnScr;
     private javax.swing.JPanel Pengeluaran;
     private javax.swing.JButton RiTra;
