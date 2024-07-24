@@ -215,7 +215,7 @@ public final class PageRiTra extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "riwayat_id", "pemasukkan_id", "pengeluaran_id", "Jumlah Pemasukkan", "Tanggal pemasukkan", "Keterangan Pemasukkan", "Jumlah Pengeluaran", "Tanggal Pengeluaran", "Keterangan Pengeluaran"
+                "riwayat", "pemasukkan", "pengeluaran", "Jumlah Pemasukkan", "Tanggal pemasukkan", "Keterangan Pemasukkan", "Jumlah Pengeluaran", "Tanggal Pengeluaran", "Keterangan Pengeluaran"
             }
         ));
         jScrollPane1.setViewportView(TableRiTra);
